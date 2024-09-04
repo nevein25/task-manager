@@ -24,6 +24,10 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
+
+        app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
+             .WithOrigins("http://localhost:4200", "https://localhost:4200"));
+
         app.UseMiddleware<ErrorHandlingMiddleware>();
 
         // Configure the HTTP request pipeline.

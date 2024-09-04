@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <section class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form #registerForm="ngForm" (ngSubmit)="register()" class="form">
+                        <h2 class="text-center mb-4">Sign Up</h2>
+                        
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" [(ngModel)]="model.username"
+                                id="username" placeholder="Enter your username" required />
+                                <div *ngIf="registerForm.submitted && registerForm.controls['username']?.invalid"
+                                class="error-message text-danger mt-2 ms-1">
+                                Username is required.
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="model.email"
+                                id="email" placeholder="Enter your email" required />
+                                <div *ngIf="registerForm.submitted && registerForm.controls['email']?.invalid"
+                                class="error-message text-danger mt-2 ms-1">
+                                Valid email is required.
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" required #password="ngModel" [ngModelOptions]="{updateOn: 'blur'}"
+                                id="password" placeholder="Enter your password" required />
+                                <div *ngIf="registerForm.submitted && password.errors" class="error-message text-danger mt-2 ms-1">
+                                    <div *ngIf="password.errors['required']">Password is required.</div>
+                                    <div *ngIf="password.errors['passwordStrength']">
+                                        Password must be 6-12 characters long, with at least one digit, one uppercase letter,
+                                        and one lowercase letter.
+                                    </div>
+                                </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.dirty" >
+                                Log In
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <p class="text-center mt-3">
+                        Have an account already? <a routerLink="/login" routerLinkActive="router-link-active"
+                            class="text-primary">Log IN</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -29,7 +29,7 @@ internal class AuthenticationService : IAuthenticationService
         if (!result) throw new InvalidLoginException();
 
         var token = _tokenGenerator.GenerateToken(user.Id, user.UserName!, user.Email!);
-        return new AuthResponseDto(token);
+        return new AuthResponseDto(token, loginDto.Username);
     }
 
     public async Task<AuthResponseDto> Register(RegisterDto registerDto)
@@ -45,7 +45,7 @@ internal class AuthenticationService : IAuthenticationService
 
 
         var token = _tokenGenerator.GenerateToken(user.Id, user.UserName!, user.Email!);
-        return new AuthResponseDto(token);
+        return new AuthResponseDto(token, user.UserName);
     }
     private async Task<bool> UserEmailExists(string email)
     {
