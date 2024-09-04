@@ -1,35 +1,3 @@
-<!-- <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-    <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h1 routerLink="/home" class="m-0 text-primary logo"><i class="fa fa-book me-3"></i>LearnIt</h1>
-    </a>
-    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-            @if (!accountService.currentUser()) {
-            <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link">Home</a>
-            }
-            <a routerLink="/course-list" routerLinkActive="active" class="nav-item nav-link">Courses</a>
-
-            @if (accountService.currentUser()) {
-            <a routerLink="/bought-courses-list" routerLinkActive="active" class="nav-item nav-link">My Learning</a>
-
-            <a class="nav-item nav-link">Hello {{accountService.currentUser()?.username}}!</a>
-
-            }
-        </div>
-        @if (!accountService.currentUser()) {
-        <a routerLink="/register" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i
-                class="fa fa-arrow-right ms-3"></i></a>
-        }
-        @else {
-        <a (click)="logout()" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">LogOut<i
-                class="fa fa-arrow-left ms-3"></i></a>
-
-        }
-    </div>
-</nav> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -42,18 +10,16 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @if (accountService.currentUser()) {
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page">Tasks</a>
+                    <a routerLink="/all-tasks" class="nav-link active" aria-current="page">Tasks</a>
                 </li>
                 }
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li> -->
+
 
             </ul>
             <form class="d-flex">
                 @if (!accountService.currentUser()) {
-                <button routerLink="/login" class="btn btn-outline-light me-3" type="submit">Login</button>
-                <button class="btn btn-outline-light me-3" type="submit">SignUp</button>
+                <a routerLink="/login" class="btn btn-outline-light me-3" >Login</a>
+                <a routerLink="/register" class="btn btn-outline-light me-3" >SignUp</a>
                 }
                 @else {
 

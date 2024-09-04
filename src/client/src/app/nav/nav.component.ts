@@ -21,6 +21,6 @@ export class NavComponent {
 
   logout() {
     this.accountService.logout();
-    this.router.navigate(['/', 'home']);
+    this.router.navigate(['/', 'login']);
   }
 }

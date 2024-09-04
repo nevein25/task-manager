@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ToDoItem, ToDoItemInput } from '../_models/to-do-item';
+import { ToDoItemQueryParams } from '../_models/to-do-item-query-params';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,19 @@ export class ToDoItemService {
     return this.http.post<number>(`${this.baseUrl}ToDoItems`, item);
   }
 
-  getAllToDoItems(queryParams?: any) {
-    return this.http.get<ToDoItem[]>(`${this.baseUrl}/search`, { params: queryParams });
+  getAllToDoItems(queryParams?: ToDoItemQueryParams) {
+    let params = new HttpParams();
+
+    if (queryParams) {
+      for (const key of Object.keys(queryParams)) {
+        const value = queryParams[key as keyof ToDoItemQueryParams];
+        if (value !== undefined && value !== null) {
+          params = params.set(key, value.toString()); 
+        }
+      }
+    }
+
+    return this.http.get<any>(`${this.baseUrl}ToDoItems/search`, { params });
   }
 
   getToDoItemById(id: number) {
