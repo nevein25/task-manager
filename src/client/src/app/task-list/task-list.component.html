@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <h2 class="mb-4">To-Do List</h2>
 
-    <!-- New Task Form -->
+
     <form (ngSubmit)="addItem()" class="mb-4">
         <div class="input-group">
             <input type="text" [(ngModel)]="newItem.title" name="title" class="form-control" placeholder="New Task"
@@ -16,9 +16,11 @@
             <div>
                 <input type="checkbox" [(ngModel)]="item.completed" (change)="updateItem(item)"
                     class="form-check-input me-2" />
-                <span [ngClass]="{'text-decoration-line-through': item.completed}">
+                <!-- <span [ngClass]="{'text-decoration-line-through': item.completed}">
                     {{ item.title }}
-                </span>
+                </span> -->
+                <input  [(ngModel)]="item.title" (blur)="updateItem(item)"
+                class="2" />
             </div>
 
             <div>

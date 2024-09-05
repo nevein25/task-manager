@@ -15,7 +15,7 @@ import { ToDoItemQueryParams } from '../_models/to-do-item-query-params';
 })
 export class TaskListComponent {
   toDoItems: any;
-  newItem: ToDoItemInput = { title: '', completed: false};
+  newItem: ToDoItemInput = { title: '', completed: false };
   queryParams: ToDoItemQueryParams = {
     searchPhraseTitle: '',
     pageSize: 10,
@@ -35,11 +35,11 @@ export class TaskListComponent {
   loadItems() {
     this.toDoItemService.getAllToDoItems(this.queryParams).subscribe({
       next: response => {
-       this.toDoItems = response.items;
+        this.toDoItems = response.items;
         console.log(response.items);
-        
+
       },
-      error: err  => console.error('Failed to load todo items', err)
+      error: err => console.error('Failed to load todo items', err)
     });
   }
 
@@ -51,7 +51,7 @@ export class TaskListComponent {
   addItem() {
     this.toDoItemService.addToDoItem(this.newItem).subscribe({
       next: _ => {
-        this.loadItems();  
+        this.loadItems();
       },
       error: (err) => console.error('Failed to add item', err)
     });
@@ -59,14 +59,14 @@ export class TaskListComponent {
 
   deleteItem(id: number) {
     this.toDoItemService.deleteToDoItem(id).subscribe({
-      next: () => this.loadItems(),
+      next: _ => this.loadItems(),
       error: (err) => console.error('Failed to delete item', err)
     });
   }
 
   updateItem(item: ToDoItem) {
     this.toDoItemService.updateToDoItem(item.id, item).subscribe({
-      next: () => this.loadItems(),
+      next: _ => this.loadItems(),
       error: (err) => console.error('Failed to update item', err)
     });
   }
